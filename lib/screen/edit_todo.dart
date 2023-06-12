@@ -11,52 +11,53 @@ class TodoEdit extends StatelessWidget {
     final TextEditingController textEditingController =
         TextEditingController(text: todoController.todos[index!].text);
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          padding: const EdgeInsets.all(40),
-          child: Column(
-            children: [
-              Expanded(
-                child: TextField(
-                  // textAlign: TextAlign.center,
-                  decoration: const InputDecoration(
-                    hintText: "What do you want to accomplish?",
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                  ),
-                  style: const TextStyle(
-                    fontSize: 25.0,
-                  ),
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 10,
-                  autofocus: true,
-                  controller: textEditingController,
+      appBar: AppBar(
+        title: const Text('Edit Todo'),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(40),
+        child: Column(
+          children: [
+            Expanded(
+              child: TextField(
+                // textAlign: TextAlign.center,
+                decoration: const InputDecoration(
+                  hintText: "What do you want to accomplish?",
+                  border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
                 ),
+                style: const TextStyle(
+                  fontSize: 25.0,
+                ),
+                keyboardType: TextInputType.multiline,
+                maxLines: 10,
+                autofocus: true,
+                controller: textEditingController,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // ignore: deprecated_member_use
-                  ElevatedButton(
-                    child: const Text('Cancel'),
-                    onPressed: () {
-                      Get.back();
-                    },
-                  ),
-                  // ignore: deprecated_member_use
-                  ElevatedButton(
-                    child: const Text('Update'),
-                    onPressed: () {
-                      var editing = todoController.todos[index!];
-                      editing.text = textEditingController.text;
-                      todoController.todos[index!] = editing;
-                      Get.back();
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // ignore: deprecated_member_use
+                ElevatedButton(
+                  child: const Text('Cancel'),
+                  onPressed: () {
+                    Get.back();
+                  },
+                ),
+                // ignore: deprecated_member_use
+                ElevatedButton(
+                  child: const Text('Update'),
+                  onPressed: () {
+                    var editing = todoController.todos[index!];
+                    editing.text = textEditingController.text;
+                    todoController.todos[index!] = editing;
+                    Get.back();
+                  },
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

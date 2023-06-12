@@ -8,7 +8,6 @@ class TodoScreen extends StatelessWidget {
 
   static const id = '/Todo_Screen';
 
-  final TextEditingController textEditingController = TextEditingController();
   final TodoController todoController = Get.find<TodoController>();
 
   @override
@@ -34,41 +33,28 @@ class TodoScreen extends StatelessWidget {
                 keyboardType: TextInputType.multiline,
                 maxLines: 10,
                 autofocus: true,
-                controller: textEditingController,
+                controller: todoController.textEditingController.value,
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 50.0),
-                    ),
-                    child: const Text('Cancel'),
-                    onPressed: () {
-                      Get.back();
-                    },
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(context.width / 1.15, 50.0),
                   ),
-                ),
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 50.0),
-                    ),
-                    child: const Text('Add'),
-                    onPressed: () {
-                      todoController.todos.add(
-                        Todo(
-                          text: textEditingController.text,
-                        ),
-                      );
-                      Get.back();
-                    },
-                  ),
+                  child: const Text('Add'),
+                  onPressed: () {
+                    todoController.todos.add(
+                      Todo(
+                        text: todoController.textEditingController.value.text,
+                      ),
+                    );
+                    Get.back();
+                  },
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
