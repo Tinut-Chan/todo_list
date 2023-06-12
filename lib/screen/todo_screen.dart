@@ -8,6 +8,7 @@ class TodoScreen extends StatelessWidget {
 
   static const id = '/Todo_Screen';
 
+  final TextEditingController textEditingController = TextEditingController();
   final TodoController todoController = Get.find<TodoController>();
 
   @override
@@ -33,7 +34,7 @@ class TodoScreen extends StatelessWidget {
                 keyboardType: TextInputType.multiline,
                 maxLines: 10,
                 autofocus: true,
-                controller: todoController.textEditingController.value,
+                controller: textEditingController,
               ),
             ),
             Row(
@@ -47,7 +48,7 @@ class TodoScreen extends StatelessWidget {
                   onPressed: () {
                     todoController.todos.add(
                       Todo(
-                        text: todoController.textEditingController.value.text,
+                        text: textEditingController.text,
                       ),
                     );
                     Get.back();
