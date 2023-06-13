@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/models/todo_model.dart';
 import 'package:get/get.dart';
@@ -5,9 +6,9 @@ import 'package:get_storage/get_storage.dart';
 
 class TodoController extends GetxController {
   final searchEditingController = TextEditingController().obs;
+  var todos = List<Todo>.empty().obs;
   // ConnectivityResult connectionStatus = ConnectivityResult.none;
   // final Connectivity connectivity = Connectivity();
-  var todos = List<Todo>.empty().obs;
   // var isConnected = false.obs;
   // late StreamSubscription<ConnectivityResult> connectivitySubscription;
 
@@ -44,6 +45,16 @@ class TodoController extends GetxController {
           .toList();
     }
   }
+
+  submitData() {
+    FirebaseFirestore.instance
+        .collection("put name db here")
+        .add({"mylist": todos});
+  }
+  // final todo = FirebaseDatabase.instance.reference();
+  // submitData() {
+  //   todo.child('items').add(items);
+  // }
 
   // Future<void> initConnectivity() async {
   //   late ConnectivityResult result;

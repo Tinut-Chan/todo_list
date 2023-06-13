@@ -17,6 +17,17 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Todo List'),
           centerTitle: true,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: () {
+                  todoController.submitData();
+                },
+                child: const Icon(Icons.refresh),
+              ),
+            ),
+          ],
         ),
         floatingActionButton:
             todoController.searchEditingController.value.text.isEmpty
